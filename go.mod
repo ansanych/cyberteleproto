@@ -1,4 +1,4 @@
-module cyberteleproto
+module github.com/ansanych/cyberteleproto
 
 go 1.25.7
 
