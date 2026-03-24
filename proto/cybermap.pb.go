@@ -393,7 +393,7 @@ const file_cybermap_proto_rawDesc = "" +
 	"\tworkhours\x18\x02 \x01(\x02R\tworkhours\x12'\n" +
 	"\x06coords\x18\x03 \x01(\v2\x0f.cybertele.GeomR\x06coords\x12\x1c\n" +
 	"\ttimePoint\x18\x04 \x01(\tR\ttimePoint\x12\x1c\n" +
-	"\tupdatedAt\x18\x05 \x01(\tR\tupdatedAt2\xbf\x03\n" +
+	"\tupdatedAt\x18\x05 \x01(\tR\tupdatedAt2\xf7\x02\n" +
 	"\bCybermap\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vParserState\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12:\n" +
@@ -401,8 +401,7 @@ const file_cybermap_proto_rawDesc = "" +
 	"\n" +
 	"ParserStop\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12E\n" +
 	"\n" +
-	"ParserLogs\x12\x16.cybertele.PageRequest\x1a\x1d.cybertele.ParserMapLogsReply\"\x00\x12F\n" +
-	"\vMachineLogs\x12\x16.cybertele.PageRequest\x1a\x1d.cybertele.ParserMapLogsReply\"\x00\x12;\n" +
+	"ParserLogs\x12\x16.cybertele.PageRequest\x1a\x1d.cybertele.ParserMapLogsReply\"\x00\x12;\n" +
 	"\bInRadius\x12\x18.cybertele.RadiusRequest\x1a\x13.cybertele.MapReply\"\x00B\tZ\a./protob\x06proto3"
 
 var (
@@ -442,17 +441,15 @@ var file_cybermap_proto_depIdxs = []int32{
 	7,  // 7: cybertele.Cybermap.ParserStart:input_type -> cybertele.Empty
 	7,  // 8: cybertele.Cybermap.ParserStop:input_type -> cybertele.Empty
 	8,  // 9: cybertele.Cybermap.ParserLogs:input_type -> cybertele.PageRequest
-	8,  // 10: cybertele.Cybermap.MachineLogs:input_type -> cybertele.PageRequest
-	3,  // 11: cybertele.Cybermap.InRadius:input_type -> cybertele.RadiusRequest
-	9,  // 12: cybertele.Cybermap.Health:output_type -> cybertele.HealthReply
-	10, // 13: cybertele.Cybermap.ParserState:output_type -> cybertele.ParserStatus
-	10, // 14: cybertele.Cybermap.ParserStart:output_type -> cybertele.ParserStatus
-	10, // 15: cybertele.Cybermap.ParserStop:output_type -> cybertele.ParserStatus
-	1,  // 16: cybertele.Cybermap.ParserLogs:output_type -> cybertele.ParserMapLogsReply
-	1,  // 17: cybertele.Cybermap.MachineLogs:output_type -> cybertele.ParserMapLogsReply
-	4,  // 18: cybertele.Cybermap.InRadius:output_type -> cybertele.MapReply
-	12, // [12:19] is the sub-list for method output_type
-	5,  // [5:12] is the sub-list for method input_type
+	3,  // 10: cybertele.Cybermap.InRadius:input_type -> cybertele.RadiusRequest
+	9,  // 11: cybertele.Cybermap.Health:output_type -> cybertele.HealthReply
+	10, // 12: cybertele.Cybermap.ParserState:output_type -> cybertele.ParserStatus
+	10, // 13: cybertele.Cybermap.ParserStart:output_type -> cybertele.ParserStatus
+	10, // 14: cybertele.Cybermap.ParserStop:output_type -> cybertele.ParserStatus
+	1,  // 15: cybertele.Cybermap.ParserLogs:output_type -> cybertele.ParserMapLogsReply
+	4,  // 16: cybertele.Cybermap.InRadius:output_type -> cybertele.MapReply
+	11, // [11:17] is the sub-list for method output_type
+	5,  // [5:11] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
 	5,  // [5:5] is the sub-list for extension extendee
 	0,  // [0:5] is the sub-list for field type_name

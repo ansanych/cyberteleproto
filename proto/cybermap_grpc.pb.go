@@ -24,7 +24,6 @@ const (
 	Cybermap_ParserStart_FullMethodName = "/cybertele.Cybermap/ParserStart"
 	Cybermap_ParserStop_FullMethodName  = "/cybertele.Cybermap/ParserStop"
 	Cybermap_ParserLogs_FullMethodName  = "/cybertele.Cybermap/ParserLogs"
-	Cybermap_MachineLogs_FullMethodName = "/cybertele.Cybermap/MachineLogs"
 	Cybermap_InRadius_FullMethodName    = "/cybertele.Cybermap/InRadius"
 )
 
@@ -37,7 +36,6 @@ type CybermapClient interface {
 	ParserStart(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	ParserStop(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ParserStatus, error)
 	ParserLogs(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*ParserMapLogsReply, error)
-	MachineLogs(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*ParserMapLogsReply, error)
 	InRadius(ctx context.Context, in *RadiusRequest, opts ...grpc.CallOption) (*MapReply, error)
 }
 
@@ -99,16 +97,6 @@ func (c *cybermapClient) ParserLogs(ctx context.Context, in *PageRequest, opts .
 	return out, nil
 }
 
-func (c *cybermapClient) MachineLogs(ctx context.Context, in *PageRequest, opts ...grpc.CallOption) (*ParserMapLogsReply, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ParserMapLogsReply)
-	err := c.cc.Invoke(ctx, Cybermap_MachineLogs_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *cybermapClient) InRadius(ctx context.Context, in *RadiusRequest, opts ...grpc.CallOption) (*MapReply, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MapReply)
@@ -128,7 +116,6 @@ type CybermapServer interface {
 	ParserStart(context.Context, *Empty) (*ParserStatus, error)
 	ParserStop(context.Context, *Empty) (*ParserStatus, error)
 	ParserLogs(context.Context, *PageRequest) (*ParserMapLogsReply, error)
-	MachineLogs(context.Context, *PageRequest) (*ParserMapLogsReply, error)
 	InRadius(context.Context, *RadiusRequest) (*MapReply, error)
 	mustEmbedUnimplementedCybermapServer()
 }
@@ -154,9 +141,6 @@ func (UnimplementedCybermapServer) ParserStop(context.Context, *Empty) (*ParserS
 }
 func (UnimplementedCybermapServer) ParserLogs(context.Context, *PageRequest) (*ParserMapLogsReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method ParserLogs not implemented")
-}
-func (UnimplementedCybermapServer) MachineLogs(context.Context, *PageRequest) (*ParserMapLogsReply, error) {
-	return nil, status.Error(codes.Unimplemented, "method MachineLogs not implemented")
 }
 func (UnimplementedCybermapServer) InRadius(context.Context, *RadiusRequest) (*MapReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method InRadius not implemented")
@@ -272,24 +256,6 @@ func _Cybermap_ParserLogs_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cybermap_MachineLogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PageRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CybermapServer).MachineLogs(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Cybermap_MachineLogs_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermapServer).MachineLogs(ctx, req.(*PageRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Cybermap_InRadius_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RadiusRequest)
 	if err := dec(in); err != nil {
@@ -334,10 +300,6 @@ var Cybermap_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ParserLogs",
 			Handler:    _Cybermap_ParserLogs_Handler,
-		},
-		{
-			MethodName: "MachineLogs",
-			Handler:    _Cybermap_MachineLogs_Handler,
 		},
 		{
 			MethodName: "InRadius",

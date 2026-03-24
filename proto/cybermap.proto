@@ -11,7 +11,6 @@ service Cybermap {
     rpc ParserStart (Empty) returns (ParserStatus) {}
     rpc ParserStop (Empty) returns (ParserStatus) {}
     rpc ParserLogs (PageRequest) returns (ParserMapLogsReply) {}
-    rpc MachineLogs (PageRequest) returns (ParserMapLogsReply) {}
     rpc InRadius (RadiusRequest) returns (MapReply) {}
 }
 
