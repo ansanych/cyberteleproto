@@ -1,0 +1,126 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service Cybermetrica {
+    rpc Health (Empty) returns (HealthReply) {}
+    rpc ParserState (Empty) returns (ParserStatus) {}
+    rpc ParserStart (Empty) returns (ParserStatus) {}
+    rpc ParserStop (Empty) returns (ParserStatus) {}
+    rpc ParserLogs (PageRequest) returns (ParserMetricaLogsReply) {}
+    rpc MachineLogs (PageRequest) returns (ParserMetricaLogsReply) {}
+    rpc MachineDataTypes (Machine) returns (MachineDataTypesReply) {}
+    rpc MachineDayStatistic (MachineStatisticRequest) returns (DayData) {}
+    rpc MachineDaysStatistic (MachineStatisticRequest) returns (DaysData) {}
+    rpc MachineErrors (MachineStatisticRequest) returns (MachineErrorsReply) {}
+    rpc Graph (MachineStatisticRequest) returns (GraphData) {}
+}
+
+message ParserMetricaLog {
+    int64 id = 1;
+    int32 sn = 2;
+    int32 count = 3;
+    string startAt = 4;
+    string andAt = 5;
+    repeated string errors = 6;
+    repeated string dataTypes = 7;
+    string createdAt = 8;
+}
+
+message ParserMetricaLogsReply {
+    repeated ParserMetricaLog data = 1;
+    Pagination pagination = 2;
+}
+
+message MachineDataType {
+    DataType dataType = 1;
+    bool checked = 2;
+    bool hasData = 3;
+    string lastDataTime = 4;
+}
+
+message MachineDataTypesReply {
+    repeated MachineDataType data = 1;
+}
+
+message MachineStatisticRequest {
+    int32 sn = 1;
+    int32 timezone = 2;
+    string date = 3;
+    string from = 4;
+    string to = 5;
+    string graph = 6;
+    float code = 7;
+}
+
+message DaysData {
+    repeated DayData data = 1;
+}
+
+message DayData {
+    int32 sn = 1;
+    int32 timezone = 2;
+    string date = 3;
+    DayDataValues connection = 4;
+    DayDataValues workhours = 5;
+    DayDataValues engine = 6;
+    DayDataValues job = 7;
+    bool hasErrors = 8;
+}
+
+message DayDataValues {
+    string start = 1;
+    string end = 2;
+    int64 duration = 3;
+    float min = 4;
+    float max = 5;
+    float value = 6;
+    repeated BlockValue blocks = 7;
+}
+
+message BlockValue {
+    string start = 1;
+    string end = 2;
+    int64 startUnix = 3;
+    int64 endUnix = 4;
+}
+
+message MachineErrorsReply {
+    repeated MachineError errors = 1;
+}
+
+message MachineError {
+    float code = 1;
+    repeated MachineErrorBlock blocks = 2;
+}
+
+message MachineErrorBlock {
+    string start = 1;
+    string end = 2;
+    int64 startUnix = 3;
+    int64 endUnix = 4;
+    float code = 5;
+}
+
+message GraphData {
+    float min = 1;
+    float max = 2;
+    float value = 3;
+    repeated GraphBlockValues blocks = 4;
+}
+
+message GraphBlockValues {
+    string start = 1;
+    string end = 2;
+    int64 startUnix = 3;
+    int64 endUnix = 4;
+    repeated RawItem rawData = 5;
+}
+
+message RawItem {
+    int64 time = 1;
+    float value = 2;
+}

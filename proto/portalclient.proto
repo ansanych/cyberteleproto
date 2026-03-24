@@ -1,0 +1,23 @@
+syntax = "proto3";
+import "cyber.proto";
+
+package cybertele;
+
+option go_package = "./proto";
+
+service PortalClient {
+    rpc GetMetricaMachines (Empty) returns (Machines) {}
+    rpc GetMetricaModelsDataTypes (Empty) returns (AllModelsDataTypes) {}
+    rpc GetMapMachines (Empty) returns (Machines) {}
+    rpc OffMeticaMachineSync (SyncOffRequest) returns (Empty) {}
+    rpc OffMapMachineSync (SyncOffRequest) returns (Empty) {}
+}
+
+message SyncOffRequest {
+    repeated SyncOffMessage data = 1;
+}
+
+message SyncOffMessage {
+    int32 sn = 1;
+    string message = 2;
+}
