@@ -37,9 +37,7 @@ message ParserMetricaLogsReply {
 
 message MachineDataType {
     DataType dataType = 1;
-    bool checked = 2;
-    bool hasData = 3;
-    string lastDataTime = 4;
+    string lastDataTime = 2;
 }
 
 message MachineDataTypesReply {

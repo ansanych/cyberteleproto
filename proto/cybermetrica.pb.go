@@ -176,9 +176,7 @@ func (x *ParserMetricaLogsReply) GetPagination() *Pagination {
 type MachineDataType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DataType      *DataType              `protobuf:"bytes,1,opt,name=dataType,proto3" json:"dataType,omitempty"`
-	Checked       bool                   `protobuf:"varint,2,opt,name=checked,proto3" json:"checked,omitempty"`
-	HasData       bool                   `protobuf:"varint,3,opt,name=hasData,proto3" json:"hasData,omitempty"`
-	LastDataTime  string                 `protobuf:"bytes,4,opt,name=lastDataTime,proto3" json:"lastDataTime,omitempty"`
+	LastDataTime  string                 `protobuf:"bytes,2,opt,name=lastDataTime,proto3" json:"lastDataTime,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -218,20 +216,6 @@ func (x *MachineDataType) GetDataType() *DataType {
 		return x.DataType
 	}
 	return nil
-}
-
-func (x *MachineDataType) GetChecked() bool {
-	if x != nil {
-		return x.Checked
-	}
-	return false
-}
-
-func (x *MachineDataType) GetHasData() bool {
-	if x != nil {
-		return x.HasData
-	}
-	return false
 }
 
 func (x *MachineDataType) GetLastDataTime() string {
@@ -1067,12 +1051,10 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v2\x1b.cybertele.ParserMetricaLogR\x04data\x125\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x15.cybertele.PaginationR\n" +
-	"pagination\"\x9a\x01\n" +
+	"pagination\"f\n" +
 	"\x0fMachineDataType\x12/\n" +
-	"\bdataType\x18\x01 \x01(\v2\x13.cybertele.DataTypeR\bdataType\x12\x18\n" +
-	"\achecked\x18\x02 \x01(\bR\achecked\x12\x18\n" +
-	"\ahasData\x18\x03 \x01(\bR\ahasData\x12\"\n" +
-	"\flastDataTime\x18\x04 \x01(\tR\flastDataTime\"G\n" +
+	"\bdataType\x18\x01 \x01(\v2\x13.cybertele.DataTypeR\bdataType\x12\"\n" +
+	"\flastDataTime\x18\x02 \x01(\tR\flastDataTime\"G\n" +
 	"\x15MachineDataTypesReply\x12.\n" +
 	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.MachineDataTypeR\x04data\"\xa7\x01\n" +
 	"\x17MachineStatisticRequest\x12\x0e\n" +
