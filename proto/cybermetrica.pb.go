@@ -27,7 +27,7 @@ type ParserMetricaLog struct {
 	Sn            int32                  `protobuf:"varint,2,opt,name=sn,proto3" json:"sn,omitempty"`
 	Count         int32                  `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
 	StartAt       string                 `protobuf:"bytes,4,opt,name=startAt,proto3" json:"startAt,omitempty"`
-	AndAt         string                 `protobuf:"bytes,5,opt,name=andAt,proto3" json:"andAt,omitempty"`
+	EndAt         string                 `protobuf:"bytes,5,opt,name=endAt,proto3" json:"endAt,omitempty"`
 	Errors        []string               `protobuf:"bytes,6,rep,name=errors,proto3" json:"errors,omitempty"`
 	DataTypes     []string               `protobuf:"bytes,7,rep,name=dataTypes,proto3" json:"dataTypes,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,8,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
@@ -93,9 +93,9 @@ func (x *ParserMetricaLog) GetStartAt() string {
 	return ""
 }
 
-func (x *ParserMetricaLog) GetAndAt() string {
+func (x *ParserMetricaLog) GetEndAt() string {
 	if x != nil {
-		return x.AndAt
+		return x.EndAt
 	}
 	return ""
 }
@@ -1059,7 +1059,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x02sn\x18\x02 \x01(\x05R\x02sn\x12\x14\n" +
 	"\x05count\x18\x03 \x01(\x05R\x05count\x12\x18\n" +
 	"\astartAt\x18\x04 \x01(\tR\astartAt\x12\x14\n" +
-	"\x05andAt\x18\x05 \x01(\tR\x05andAt\x12\x16\n" +
+	"\x05endAt\x18\x05 \x01(\tR\x05endAt\x12\x16\n" +
 	"\x06errors\x18\x06 \x03(\tR\x06errors\x12\x1c\n" +
 	"\tdataTypes\x18\a \x03(\tR\tdataTypes\x12\x1c\n" +
 	"\tcreatedAt\x18\b \x01(\tR\tcreatedAt\"\x80\x01\n" +

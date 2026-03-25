@@ -24,7 +24,7 @@ message ParserMetricaLog {
     int32 sn = 2;
     int32 count = 3;
     string startAt = 4;
-    string andAt = 5;
+    string endAt = 5;
     repeated string errors = 6;
     repeated string dataTypes = 7;
     string createdAt = 8;
