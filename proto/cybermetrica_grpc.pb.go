@@ -31,6 +31,7 @@ const (
 	Cybermetrica_MachineErrors_FullMethodName        = "/cybertele.Cybermetrica/MachineErrors"
 	Cybermetrica_MachineGraph_FullMethodName         = "/cybertele.Cybermetrica/MachineGraph"
 	Cybermetrica_MachineGps_FullMethodName           = "/cybertele.Cybermetrica/MachineGps"
+	Cybermetrica_AllDataTypes_FullMethodName         = "/cybertele.Cybermetrica/AllDataTypes"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -49,6 +50,7 @@ type CybermetricaClient interface {
 	MachineErrors(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*MachineErrorsReply, error)
 	MachineGraph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error)
 	MachineGps(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GpsData, error)
+	AllDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DataTypes, error)
 }
 
 type cybermetricaClient struct {
@@ -179,6 +181,16 @@ func (c *cybermetricaClient) MachineGps(ctx context.Context, in *MachineStatisti
 	return out, nil
 }
 
+func (c *cybermetricaClient) AllDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DataTypes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DataTypes)
+	err := c.cc.Invoke(ctx, Cybermetrica_AllDataTypes_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -195,6 +207,7 @@ type CybermetricaServer interface {
 	MachineErrors(context.Context, *MachineStatisticRequest) (*MachineErrorsReply, error)
 	MachineGraph(context.Context, *MachineStatisticRequest) (*GraphData, error)
 	MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error)
+	AllDataTypes(context.Context, *Empty) (*DataTypes, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -240,6 +253,9 @@ func (UnimplementedCybermetricaServer) MachineGraph(context.Context, *MachineSta
 }
 func (UnimplementedCybermetricaServer) MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error) {
 	return nil, status.Error(codes.Unimplemented, "method MachineGps not implemented")
+}
+func (UnimplementedCybermetricaServer) AllDataTypes(context.Context, *Empty) (*DataTypes, error) {
+	return nil, status.Error(codes.Unimplemented, "method AllDataTypes not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -478,6 +494,24 @@ func _Cybermetrica_MachineGps_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_AllDataTypes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).AllDataTypes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_AllDataTypes_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).AllDataTypes(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -532,6 +566,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MachineGps",
 			Handler:    _Cybermetrica_MachineGps_Handler,
+		},
+		{
+			MethodName: "AllDataTypes",
+			Handler:    _Cybermetrica_AllDataTypes_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

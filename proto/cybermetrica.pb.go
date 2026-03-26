@@ -1299,7 +1299,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\arawData\x18\x05 \x03(\v2\x12.cybertele.RawItemR\arawData\"3\n" +
 	"\aRawItem\x12\x12\n" +
 	"\x04time\x18\x01 \x01(\x03R\x04time\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x02R\x05value2\xe8\x06\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value2\xa2\a\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vParserState\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12:\n" +
@@ -1315,7 +1315,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\rMachineErrors\x12\".cybertele.MachineStatisticRequest\x1a\x1d.cybertele.MachineErrorsReply\"\x00\x12J\n" +
 	"\fMachineGraph\x12\".cybertele.MachineStatisticRequest\x1a\x14.cybertele.GraphData\"\x00\x12F\n" +
 	"\n" +
-	"MachineGps\x12\".cybertele.MachineStatisticRequest\x1a\x12.cybertele.GpsData\"\x00B\tZ\a./protob\x06proto3"
+	"MachineGps\x12\".cybertele.MachineStatisticRequest\x1a\x12.cybertele.GpsData\"\x00\x128\n" +
+	"\fAllDataTypes\x12\x10.cybertele.Empty\x1a\x14.cybertele.DataTypes\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_cybermetrica_proto_rawDescOnce sync.Once
@@ -1356,6 +1357,7 @@ var file_cybermetrica_proto_goTypes = []any{
 	(*Machine)(nil),                 // 22: cybertele.Machine
 	(*HealthReply)(nil),             // 23: cybertele.HealthReply
 	(*ParserStatus)(nil),            // 24: cybertele.ParserStatus
+	(*DataTypes)(nil),               // 25: cybertele.DataTypes
 }
 var file_cybermetrica_proto_depIdxs = []int32{
 	0,  // 0: cybertele.GpsDataBlock.gps:type_name -> cybertele.RawGPS
@@ -1386,20 +1388,22 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	7,  // 25: cybertele.Cybermetrica.MachineErrors:input_type -> cybertele.MachineStatisticRequest
 	7,  // 26: cybertele.Cybermetrica.MachineGraph:input_type -> cybertele.MachineStatisticRequest
 	7,  // 27: cybertele.Cybermetrica.MachineGps:input_type -> cybertele.MachineStatisticRequest
-	23, // 28: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	24, // 29: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
-	24, // 30: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
-	24, // 31: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
-	4,  // 32: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
-	4,  // 33: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
-	6,  // 34: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
-	9,  // 35: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
-	8,  // 36: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
-	12, // 37: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
-	15, // 38: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
-	2,  // 39: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
-	28, // [28:40] is the sub-list for method output_type
-	16, // [16:28] is the sub-list for method input_type
+	20, // 28: cybertele.Cybermetrica.AllDataTypes:input_type -> cybertele.Empty
+	23, // 29: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	24, // 30: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
+	24, // 31: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
+	24, // 32: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
+	4,  // 33: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
+	4,  // 34: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
+	6,  // 35: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
+	9,  // 36: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
+	8,  // 37: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
+	12, // 38: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
+	15, // 39: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
+	2,  // 40: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
+	25, // 41: cybertele.Cybermetrica.AllDataTypes:output_type -> cybertele.DataTypes
+	29, // [29:42] is the sub-list for method output_type
+	16, // [16:29] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name
 	16, // [16:16] is the sub-list for extension extendee
 	0,  // [0:16] is the sub-list for field type_name

@@ -18,6 +18,7 @@ service Cybermetrica {
     rpc MachineErrors (MachineStatisticRequest) returns (MachineErrorsReply) {}
     rpc MachineGraph (MachineStatisticRequest) returns (GraphData) {}
     rpc MachineGps (MachineStatisticRequest) returns (GpsData) {}
+    rpc AllDataTypes (Empty) returns (DataTypes) {}
 }
 
 message RawGPS {
