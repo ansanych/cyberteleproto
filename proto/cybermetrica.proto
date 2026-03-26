@@ -16,7 +16,25 @@ service Cybermetrica {
     rpc MachineDayStatistic (MachineStatisticRequest) returns (DayData) {}
     rpc MachineDaysStatistic (MachineStatisticRequest) returns (DaysData) {}
     rpc MachineErrors (MachineStatisticRequest) returns (MachineErrorsReply) {}
-    rpc Graph (MachineStatisticRequest) returns (GraphData) {}
+    rpc MachineGraph (MachineStatisticRequest) returns (GraphData) {}
+    rpc MachineGps (MachineStatisticRequest) returns (GpsData) {}
+}
+
+message RawGPS {
+    int64 time = 1;
+    repeated float value = 2;
+}
+
+message GpsDataBlock {
+    string start = 1;
+    string end = 2;
+    int64 startUnix = 3;
+    int64 endUnix = 4;
+    repeated RawGPS gps = 5;
+}
+
+message GpsData {
+    repeated GpsDataBlock data = 1;
 }
 
 message ParserMetricaLog {

@@ -29,7 +29,8 @@ const (
 	Cybermetrica_MachineDayStatistic_FullMethodName  = "/cybertele.Cybermetrica/MachineDayStatistic"
 	Cybermetrica_MachineDaysStatistic_FullMethodName = "/cybertele.Cybermetrica/MachineDaysStatistic"
 	Cybermetrica_MachineErrors_FullMethodName        = "/cybertele.Cybermetrica/MachineErrors"
-	Cybermetrica_Graph_FullMethodName                = "/cybertele.Cybermetrica/Graph"
+	Cybermetrica_MachineGraph_FullMethodName         = "/cybertele.Cybermetrica/MachineGraph"
+	Cybermetrica_MachineGps_FullMethodName           = "/cybertele.Cybermetrica/MachineGps"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -46,7 +47,8 @@ type CybermetricaClient interface {
 	MachineDayStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*DayData, error)
 	MachineDaysStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*DaysData, error)
 	MachineErrors(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*MachineErrorsReply, error)
-	Graph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error)
+	MachineGraph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error)
+	MachineGps(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GpsData, error)
 }
 
 type cybermetricaClient struct {
@@ -157,10 +159,20 @@ func (c *cybermetricaClient) MachineErrors(ctx context.Context, in *MachineStati
 	return out, nil
 }
 
-func (c *cybermetricaClient) Graph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error) {
+func (c *cybermetricaClient) MachineGraph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GraphData)
-	err := c.cc.Invoke(ctx, Cybermetrica_Graph_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Cybermetrica_MachineGraph_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cybermetricaClient) MachineGps(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GpsData, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GpsData)
+	err := c.cc.Invoke(ctx, Cybermetrica_MachineGps_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +193,8 @@ type CybermetricaServer interface {
 	MachineDayStatistic(context.Context, *MachineStatisticRequest) (*DayData, error)
 	MachineDaysStatistic(context.Context, *MachineStatisticRequest) (*DaysData, error)
 	MachineErrors(context.Context, *MachineStatisticRequest) (*MachineErrorsReply, error)
-	Graph(context.Context, *MachineStatisticRequest) (*GraphData, error)
+	MachineGraph(context.Context, *MachineStatisticRequest) (*GraphData, error)
+	MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -222,8 +235,11 @@ func (UnimplementedCybermetricaServer) MachineDaysStatistic(context.Context, *Ma
 func (UnimplementedCybermetricaServer) MachineErrors(context.Context, *MachineStatisticRequest) (*MachineErrorsReply, error) {
 	return nil, status.Error(codes.Unimplemented, "method MachineErrors not implemented")
 }
-func (UnimplementedCybermetricaServer) Graph(context.Context, *MachineStatisticRequest) (*GraphData, error) {
-	return nil, status.Error(codes.Unimplemented, "method Graph not implemented")
+func (UnimplementedCybermetricaServer) MachineGraph(context.Context, *MachineStatisticRequest) (*GraphData, error) {
+	return nil, status.Error(codes.Unimplemented, "method MachineGraph not implemented")
+}
+func (UnimplementedCybermetricaServer) MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error) {
+	return nil, status.Error(codes.Unimplemented, "method MachineGps not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -426,20 +442,38 @@ func _Cybermetrica_MachineErrors_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Cybermetrica_Graph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Cybermetrica_MachineGraph_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MachineStatisticRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CybermetricaServer).Graph(ctx, in)
+		return srv.(CybermetricaServer).MachineGraph(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Cybermetrica_Graph_FullMethodName,
+		FullMethod: Cybermetrica_MachineGraph_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CybermetricaServer).Graph(ctx, req.(*MachineStatisticRequest))
+		return srv.(CybermetricaServer).MachineGraph(ctx, req.(*MachineStatisticRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Cybermetrica_MachineGps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MachineStatisticRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).MachineGps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_MachineGps_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).MachineGps(ctx, req.(*MachineStatisticRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -492,8 +526,12 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Cybermetrica_MachineErrors_Handler,
 		},
 		{
-			MethodName: "Graph",
-			Handler:    _Cybermetrica_Graph_Handler,
+			MethodName: "MachineGraph",
+			Handler:    _Cybermetrica_MachineGraph_Handler,
+		},
+		{
+			MethodName: "MachineGps",
+			Handler:    _Cybermetrica_MachineGps_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
