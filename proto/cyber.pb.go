@@ -340,7 +340,7 @@ type PageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Sn            int32                  `protobuf:"varint,3,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,3,opt,name=sn,proto3" json:"sn,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -389,11 +389,11 @@ func (x *PageRequest) GetLimit() int32 {
 	return 0
 }
 
-func (x *PageRequest) GetSn() int32 {
+func (x *PageRequest) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 type Pagination struct {
@@ -458,7 +458,7 @@ func (x *Pagination) GetTotal() int32 {
 
 type Machine struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            int32                  `protobuf:"varint,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Model         string                 `protobuf:"bytes,2,opt,name=model,proto3" json:"model,omitempty"`
 	Sync          bool                   `protobuf:"varint,3,opt,name=sync,proto3" json:"sync,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -495,11 +495,11 @@ func (*Machine) Descriptor() ([]byte, []int) {
 	return file_cyber_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *Machine) GetSn() int32 {
+func (x *Machine) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *Machine) GetModel() string {
@@ -791,14 +791,14 @@ const file_cyber_proto_rawDesc = "" +
 	"\vPageRequest\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x0e\n" +
-	"\x02sn\x18\x03 \x01(\x05R\x02sn\"L\n" +
+	"\x02sn\x18\x03 \x01(\tR\x02sn\"L\n" +
 	"\n" +
 	"Pagination\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x14\n" +
 	"\x05total\x18\x03 \x01(\x05R\x05total\"C\n" +
 	"\aMachine\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\x05R\x02sn\x12\x14\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
 	"\x04sync\x18\x03 \x01(\bR\x04sync\":\n" +
 	"\bMachines\x12.\n" +

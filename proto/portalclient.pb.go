@@ -67,7 +67,7 @@ func (x *SyncOffRequest) GetData() []*SyncOffMessage {
 
 type SyncOffMessage struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            int32                  `protobuf:"varint,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -103,11 +103,11 @@ func (*SyncOffMessage) Descriptor() ([]byte, []int) {
 	return file_portalclient_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *SyncOffMessage) GetSn() int32 {
+func (x *SyncOffMessage) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *SyncOffMessage) GetMessage() string {
@@ -125,7 +125,7 @@ const file_portalclient_proto_rawDesc = "" +
 	"\x0eSyncOffRequest\x12-\n" +
 	"\x04data\x18\x01 \x03(\v2\x19.cybertele.SyncOffMessageR\x04data\":\n" +
 	"\x0eSyncOffMessage\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\x05R\x02sn\x12\x18\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage2\xe3\x02\n" +
 	"\fPortalClient\x12=\n" +
 	"\x12GetMetricaMachines\x12\x10.cybertele.Empty\x1a\x13.cybertele.Machines\"\x00\x12N\n" +

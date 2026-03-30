@@ -41,7 +41,7 @@ message MapReply {
 }
 
 message MachineMapData {
-    int32 sn = 1;
+    string sn = 1;
     float workhours = 2;
     Geom coords = 3;
     string timePoint = 4;

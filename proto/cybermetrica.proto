@@ -40,7 +40,7 @@ message GpsData {
 
 message ParserMetricaLog {
     int64 id = 1;
-    int32 sn = 2;
+    string sn = 2;
     int32 count = 3;
     string startAt = 4;
     string endAt = 5;
@@ -64,7 +64,7 @@ message MachineDataTypesReply {
 }
 
 message MachineStatisticRequest {
-    int32 sn = 1;
+    string sn = 1;
     int32 timezone = 2;
     string date = 3;
     string from = 4;
@@ -78,7 +78,7 @@ message DaysData {
 }
 
 message DayData {
-    int32 sn = 1;
+    string sn = 1;
     int32 timezone = 2;
     string date = 3;
     DayDataValues connection = 4;

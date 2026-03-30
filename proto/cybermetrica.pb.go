@@ -196,7 +196,7 @@ func (x *GpsData) GetData() []*GpsDataBlock {
 type ParserMetricaLog struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Sn            int32                  `protobuf:"varint,2,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
 	Count         int32                  `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
 	StartAt       string                 `protobuf:"bytes,4,opt,name=startAt,proto3" json:"startAt,omitempty"`
 	EndAt         string                 `protobuf:"bytes,5,opt,name=endAt,proto3" json:"endAt,omitempty"`
@@ -244,11 +244,11 @@ func (x *ParserMetricaLog) GetId() int64 {
 	return 0
 }
 
-func (x *ParserMetricaLog) GetSn() int32 {
+func (x *ParserMetricaLog) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *ParserMetricaLog) GetCount() int32 {
@@ -443,7 +443,7 @@ func (x *MachineDataTypesReply) GetData() []*MachineDataType {
 
 type MachineStatisticRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            int32                  `protobuf:"varint,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Timezone      int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
 	Date          string                 `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
 	From          string                 `protobuf:"bytes,4,opt,name=from,proto3" json:"from,omitempty"`
@@ -484,11 +484,11 @@ func (*MachineStatisticRequest) Descriptor() ([]byte, []int) {
 	return file_cybermetrica_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *MachineStatisticRequest) GetSn() int32 {
+func (x *MachineStatisticRequest) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *MachineStatisticRequest) GetTimezone() int32 {
@@ -579,7 +579,7 @@ func (x *DaysData) GetData() []*DayData {
 
 type DayData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            int32                  `protobuf:"varint,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Timezone      int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
 	Date          string                 `protobuf:"bytes,3,opt,name=date,proto3" json:"date,omitempty"`
 	Connection    *DayDataValues         `protobuf:"bytes,4,opt,name=connection,proto3" json:"connection,omitempty"`
@@ -621,11 +621,11 @@ func (*DayData) Descriptor() ([]byte, []int) {
 	return file_cybermetrica_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *DayData) GetSn() int32 {
+func (x *DayData) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *DayData) GetTimezone() int32 {
@@ -1223,7 +1223,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04data\x18\x01 \x03(\v2\x17.cybertele.GpsDataBlockR\x04data\"\xcc\x01\n" +
 	"\x10ParserMetricaLog\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\x05R\x02sn\x12\x14\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn\x12\x14\n" +
 	"\x05count\x18\x03 \x01(\x05R\x05count\x12\x18\n" +
 	"\astartAt\x18\x04 \x01(\tR\astartAt\x12\x14\n" +
 	"\x05endAt\x18\x05 \x01(\tR\x05endAt\x12\x16\n" +
@@ -1241,7 +1241,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x15MachineDataTypesReply\x12.\n" +
 	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.MachineDataTypeR\x04data\"\xa7\x01\n" +
 	"\x17MachineStatisticRequest\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\x05R\x02sn\x12\x1a\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
 	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
 	"\x04date\x18\x03 \x01(\tR\x04date\x12\x12\n" +
 	"\x04from\x18\x04 \x01(\tR\x04from\x12\x0e\n" +
@@ -1251,7 +1251,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\bDaysData\x12&\n" +
 	"\x04data\x18\x01 \x03(\v2\x12.cybertele.DayDataR\x04data\"\xb7\x02\n" +
 	"\aDayData\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\x05R\x02sn\x12\x1a\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
 	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
 	"\x04date\x18\x03 \x01(\tR\x04date\x128\n" +
 	"\n" +

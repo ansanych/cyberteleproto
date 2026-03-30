@@ -37,7 +37,7 @@ message ParserStatus {
 message PageRequest {
     int32 page = 1;
     int32 limit = 2;
-    int32 sn = 3;
+    string sn = 3;
 }
 
 message Pagination {
@@ -47,7 +47,7 @@ message Pagination {
 }
 
 message Machine {
-    int32 sn = 1;
+    string sn = 1;
     string model = 2;
     bool sync = 3;
 }

@@ -291,7 +291,7 @@ func (x *MapReply) GetData() []*MachineMapData {
 
 type MachineMapData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            int32                  `protobuf:"varint,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 	Workhours     float32                `protobuf:"fixed32,2,opt,name=workhours,proto3" json:"workhours,omitempty"`
 	Coords        *Geom                  `protobuf:"bytes,3,opt,name=coords,proto3" json:"coords,omitempty"`
 	TimePoint     string                 `protobuf:"bytes,4,opt,name=timePoint,proto3" json:"timePoint,omitempty"`
@@ -330,11 +330,11 @@ func (*MachineMapData) Descriptor() ([]byte, []int) {
 	return file_cybermap_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *MachineMapData) GetSn() int32 {
+func (x *MachineMapData) GetSn() string {
 	if x != nil {
 		return x.Sn
 	}
-	return 0
+	return ""
 }
 
 func (x *MachineMapData) GetWorkhours() float32 {
@@ -389,7 +389,7 @@ const file_cybermap_proto_rawDesc = "" +
 	"\bMapReply\x12-\n" +
 	"\x04data\x18\x01 \x03(\v2\x19.cybertele.MachineMapDataR\x04data\"\xa3\x01\n" +
 	"\x0eMachineMapData\x12\x0e\n" +
-	"\x02sn\x18\x01 \x01(\x05R\x02sn\x12\x1c\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1c\n" +
 	"\tworkhours\x18\x02 \x01(\x02R\tworkhours\x12'\n" +
 	"\x06coords\x18\x03 \x01(\v2\x0f.cybertele.GeomR\x06coords\x12\x1c\n" +
 	"\ttimePoint\x18\x04 \x01(\tR\ttimePoint\x12\x1c\n" +

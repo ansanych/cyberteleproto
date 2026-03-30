@@ -18,6 +18,6 @@ message SyncOffRequest {
 }
 
 message SyncOffMessage {
-    int32 sn = 1;
+    string sn = 1;
     string message = 2;
 }
