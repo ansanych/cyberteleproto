@@ -61,6 +61,7 @@ message DataType {
     string name = 2;
     string meaning = 3;
     bool required = 4;
+    string group = 5;
 }
 
 message DataTypes {

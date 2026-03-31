@@ -566,6 +566,7 @@ type DataType struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Meaning       string                 `protobuf:"bytes,3,opt,name=meaning,proto3" json:"meaning,omitempty"`
 	Required      bool                   `protobuf:"varint,4,opt,name=required,proto3" json:"required,omitempty"`
+	Group         string                 `protobuf:"bytes,5,opt,name=group,proto3" json:"group,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -626,6 +627,13 @@ func (x *DataType) GetRequired() bool {
 		return x.Required
 	}
 	return false
+}
+
+func (x *DataType) GetGroup() string {
+	if x != nil {
+		return x.Group
+	}
+	return ""
 }
 
 type DataTypes struct {
@@ -802,12 +810,13 @@ const file_cyber_proto_rawDesc = "" +
 	"\x05model\x18\x02 \x01(\tR\x05model\x12\x12\n" +
 	"\x04sync\x18\x03 \x01(\bR\x04sync\":\n" +
 	"\bMachines\x12.\n" +
-	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"h\n" +
+	"\bmachines\x18\x01 \x03(\v2\x12.cybertele.MachineR\bmachines\"~\n" +
 	"\bDataType\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
 	"\ameaning\x18\x03 \x01(\tR\ameaning\x12\x1a\n" +
-	"\brequired\x18\x04 \x01(\bR\brequired\"4\n" +
+	"\brequired\x18\x04 \x01(\bR\brequired\x12\x14\n" +
+	"\x05group\x18\x05 \x01(\tR\x05group\"4\n" +
 	"\tDataTypes\x12'\n" +
 	"\x04data\x18\x01 \x03(\v2\x13.cybertele.DataTypeR\x04data\"Y\n" +
 	"\x0eModelDataTypes\x12\x14\n" +
