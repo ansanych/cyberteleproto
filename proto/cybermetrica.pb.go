@@ -1205,6 +1205,174 @@ func (x *RawItem) GetValue() float32 {
 	return 0
 }
 
+type StatisticData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Timezone      int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	From          string                 `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To            string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Engine        *StatisticEngine       `protobuf:"bytes,5,opt,name=engine,proto3" json:"engine,omitempty"`
+	Workhours     float32                `protobuf:"fixed32,6,opt,name=workhours,proto3" json:"workhours,omitempty"`
+	Job           int64                  `protobuf:"varint,7,opt,name=job,proto3" json:"job,omitempty"`
+	Lost          int64                  `protobuf:"varint,8,opt,name=lost,proto3" json:"lost,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StatisticData) Reset() {
+	*x = StatisticData{}
+	mi := &file_cybermetrica_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StatisticData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatisticData) ProtoMessage() {}
+
+func (x *StatisticData) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatisticData.ProtoReflect.Descriptor instead.
+func (*StatisticData) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *StatisticData) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *StatisticData) GetTimezone() int32 {
+	if x != nil {
+		return x.Timezone
+	}
+	return 0
+}
+
+func (x *StatisticData) GetFrom() string {
+	if x != nil {
+		return x.From
+	}
+	return ""
+}
+
+func (x *StatisticData) GetTo() string {
+	if x != nil {
+		return x.To
+	}
+	return ""
+}
+
+func (x *StatisticData) GetEngine() *StatisticEngine {
+	if x != nil {
+		return x.Engine
+	}
+	return nil
+}
+
+func (x *StatisticData) GetWorkhours() float32 {
+	if x != nil {
+		return x.Workhours
+	}
+	return 0
+}
+
+func (x *StatisticData) GetJob() int64 {
+	if x != nil {
+		return x.Job
+	}
+	return 0
+}
+
+func (x *StatisticData) GetLost() int64 {
+	if x != nil {
+		return x.Lost
+	}
+	return 0
+}
+
+type StatisticEngine struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	All           int64                  `protobuf:"varint,1,opt,name=all,proto3" json:"all,omitempty"`
+	Idle          int64                  `protobuf:"varint,2,opt,name=idle,proto3" json:"idle,omitempty"`
+	Work          int64                  `protobuf:"varint,3,opt,name=work,proto3" json:"work,omitempty"`
+	HighRPM       int64                  `protobuf:"varint,4,opt,name=highRPM,proto3" json:"highRPM,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StatisticEngine) Reset() {
+	*x = StatisticEngine{}
+	mi := &file_cybermetrica_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StatisticEngine) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatisticEngine) ProtoMessage() {}
+
+func (x *StatisticEngine) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatisticEngine.ProtoReflect.Descriptor instead.
+func (*StatisticEngine) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *StatisticEngine) GetAll() int64 {
+	if x != nil {
+		return x.All
+	}
+	return 0
+}
+
+func (x *StatisticEngine) GetIdle() int64 {
+	if x != nil {
+		return x.Idle
+	}
+	return 0
+}
+
+func (x *StatisticEngine) GetWork() int64 {
+	if x != nil {
+		return x.Work
+	}
+	return 0
+}
+
+func (x *StatisticEngine) GetHighRPM() int64 {
+	if x != nil {
+		return x.HighRPM
+	}
+	return 0
+}
+
 var File_cybermetrica_proto protoreflect.FileDescriptor
 
 const file_cybermetrica_proto_rawDesc = "" +
@@ -1299,7 +1467,21 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\arawData\x18\x05 \x03(\v2\x12.cybertele.RawItemR\arawData\"3\n" +
 	"\aRawItem\x12\x12\n" +
 	"\x04time\x18\x01 \x01(\x03R\x04time\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x02R\x05value2\xa2\a\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value\"\xd7\x01\n" +
+	"\rStatisticData\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
+	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
+	"\x04from\x18\x03 \x01(\tR\x04from\x12\x0e\n" +
+	"\x02to\x18\x04 \x01(\tR\x02to\x122\n" +
+	"\x06engine\x18\x05 \x01(\v2\x1a.cybertele.StatisticEngineR\x06engine\x12\x1c\n" +
+	"\tworkhours\x18\x06 \x01(\x02R\tworkhours\x12\x10\n" +
+	"\x03job\x18\a \x01(\x03R\x03job\x12\x12\n" +
+	"\x04lost\x18\b \x01(\x03R\x04lost\"e\n" +
+	"\x0fStatisticEngine\x12\x10\n" +
+	"\x03all\x18\x01 \x01(\x03R\x03all\x12\x12\n" +
+	"\x04idle\x18\x02 \x01(\x03R\x04idle\x12\x12\n" +
+	"\x04work\x18\x03 \x01(\x03R\x04work\x12\x18\n" +
+	"\ahighRPM\x18\x04 \x01(\x03R\ahighRPM2\xf6\a\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vParserState\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12:\n" +
@@ -1316,7 +1498,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\fMachineGraph\x12\".cybertele.MachineStatisticRequest\x1a\x14.cybertele.GraphData\"\x00\x12F\n" +
 	"\n" +
 	"MachineGps\x12\".cybertele.MachineStatisticRequest\x1a\x12.cybertele.GpsData\"\x00\x128\n" +
-	"\fAllDataTypes\x12\x10.cybertele.Empty\x1a\x14.cybertele.DataTypes\"\x00B\tZ\a./protob\x06proto3"
+	"\fAllDataTypes\x12\x10.cybertele.Empty\x1a\x14.cybertele.DataTypes\"\x00\x12R\n" +
+	"\x10MachineStatistic\x12\".cybertele.MachineStatisticRequest\x1a\x18.cybertele.StatisticData\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_cybermetrica_proto_rawDescOnce sync.Once
@@ -1330,7 +1513,7 @@ func file_cybermetrica_proto_rawDescGZIP() []byte {
 	return file_cybermetrica_proto_rawDescData
 }
 
-var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_cybermetrica_proto_goTypes = []any{
 	(*RawGPS)(nil),                  // 0: cybertele.RawGPS
 	(*GpsDataBlock)(nil),            // 1: cybertele.GpsDataBlock
@@ -1350,21 +1533,23 @@ var file_cybermetrica_proto_goTypes = []any{
 	(*GraphData)(nil),               // 15: cybertele.GraphData
 	(*GraphBlockValues)(nil),        // 16: cybertele.GraphBlockValues
 	(*RawItem)(nil),                 // 17: cybertele.RawItem
-	(*Pagination)(nil),              // 18: cybertele.Pagination
-	(*DataType)(nil),                // 19: cybertele.DataType
-	(*Empty)(nil),                   // 20: cybertele.Empty
-	(*PageRequest)(nil),             // 21: cybertele.PageRequest
-	(*Machine)(nil),                 // 22: cybertele.Machine
-	(*HealthReply)(nil),             // 23: cybertele.HealthReply
-	(*ParserStatus)(nil),            // 24: cybertele.ParserStatus
-	(*DataTypes)(nil),               // 25: cybertele.DataTypes
+	(*StatisticData)(nil),           // 18: cybertele.StatisticData
+	(*StatisticEngine)(nil),         // 19: cybertele.StatisticEngine
+	(*Pagination)(nil),              // 20: cybertele.Pagination
+	(*DataType)(nil),                // 21: cybertele.DataType
+	(*Empty)(nil),                   // 22: cybertele.Empty
+	(*PageRequest)(nil),             // 23: cybertele.PageRequest
+	(*Machine)(nil),                 // 24: cybertele.Machine
+	(*HealthReply)(nil),             // 25: cybertele.HealthReply
+	(*ParserStatus)(nil),            // 26: cybertele.ParserStatus
+	(*DataTypes)(nil),               // 27: cybertele.DataTypes
 }
 var file_cybermetrica_proto_depIdxs = []int32{
 	0,  // 0: cybertele.GpsDataBlock.gps:type_name -> cybertele.RawGPS
 	1,  // 1: cybertele.GpsData.data:type_name -> cybertele.GpsDataBlock
 	3,  // 2: cybertele.ParserMetricaLogsReply.data:type_name -> cybertele.ParserMetricaLog
-	18, // 3: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
-	19, // 4: cybertele.MachineDataType.dataType:type_name -> cybertele.DataType
+	20, // 3: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
+	21, // 4: cybertele.MachineDataType.dataType:type_name -> cybertele.DataType
 	5,  // 5: cybertele.MachineDataTypesReply.data:type_name -> cybertele.MachineDataType
 	9,  // 6: cybertele.DaysData.data:type_name -> cybertele.DayData
 	10, // 7: cybertele.DayData.connection:type_name -> cybertele.DayDataValues
@@ -1376,37 +1561,40 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	14, // 13: cybertele.MachineError.blocks:type_name -> cybertele.MachineErrorBlock
 	16, // 14: cybertele.GraphData.blocks:type_name -> cybertele.GraphBlockValues
 	17, // 15: cybertele.GraphBlockValues.rawData:type_name -> cybertele.RawItem
-	20, // 16: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
-	20, // 17: cybertele.Cybermetrica.ParserState:input_type -> cybertele.Empty
-	20, // 18: cybertele.Cybermetrica.ParserStart:input_type -> cybertele.Empty
-	20, // 19: cybertele.Cybermetrica.ParserStop:input_type -> cybertele.Empty
-	21, // 20: cybertele.Cybermetrica.ParserLogs:input_type -> cybertele.PageRequest
-	21, // 21: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
-	22, // 22: cybertele.Cybermetrica.MachineDataTypes:input_type -> cybertele.Machine
-	7,  // 23: cybertele.Cybermetrica.MachineDayStatistic:input_type -> cybertele.MachineStatisticRequest
-	7,  // 24: cybertele.Cybermetrica.MachineDaysStatistic:input_type -> cybertele.MachineStatisticRequest
-	7,  // 25: cybertele.Cybermetrica.MachineErrors:input_type -> cybertele.MachineStatisticRequest
-	7,  // 26: cybertele.Cybermetrica.MachineGraph:input_type -> cybertele.MachineStatisticRequest
-	7,  // 27: cybertele.Cybermetrica.MachineGps:input_type -> cybertele.MachineStatisticRequest
-	20, // 28: cybertele.Cybermetrica.AllDataTypes:input_type -> cybertele.Empty
-	23, // 29: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	24, // 30: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
-	24, // 31: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
-	24, // 32: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
-	4,  // 33: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
-	4,  // 34: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
-	6,  // 35: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
-	9,  // 36: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
-	8,  // 37: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
-	12, // 38: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
-	15, // 39: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
-	2,  // 40: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
-	25, // 41: cybertele.Cybermetrica.AllDataTypes:output_type -> cybertele.DataTypes
-	29, // [29:42] is the sub-list for method output_type
-	16, // [16:29] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	19, // 16: cybertele.StatisticData.engine:type_name -> cybertele.StatisticEngine
+	22, // 17: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
+	22, // 18: cybertele.Cybermetrica.ParserState:input_type -> cybertele.Empty
+	22, // 19: cybertele.Cybermetrica.ParserStart:input_type -> cybertele.Empty
+	22, // 20: cybertele.Cybermetrica.ParserStop:input_type -> cybertele.Empty
+	23, // 21: cybertele.Cybermetrica.ParserLogs:input_type -> cybertele.PageRequest
+	23, // 22: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
+	24, // 23: cybertele.Cybermetrica.MachineDataTypes:input_type -> cybertele.Machine
+	7,  // 24: cybertele.Cybermetrica.MachineDayStatistic:input_type -> cybertele.MachineStatisticRequest
+	7,  // 25: cybertele.Cybermetrica.MachineDaysStatistic:input_type -> cybertele.MachineStatisticRequest
+	7,  // 26: cybertele.Cybermetrica.MachineErrors:input_type -> cybertele.MachineStatisticRequest
+	7,  // 27: cybertele.Cybermetrica.MachineGraph:input_type -> cybertele.MachineStatisticRequest
+	7,  // 28: cybertele.Cybermetrica.MachineGps:input_type -> cybertele.MachineStatisticRequest
+	22, // 29: cybertele.Cybermetrica.AllDataTypes:input_type -> cybertele.Empty
+	7,  // 30: cybertele.Cybermetrica.MachineStatistic:input_type -> cybertele.MachineStatisticRequest
+	25, // 31: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	26, // 32: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
+	26, // 33: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
+	26, // 34: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
+	4,  // 35: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
+	4,  // 36: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
+	6,  // 37: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
+	9,  // 38: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
+	8,  // 39: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
+	12, // 40: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
+	15, // 41: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
+	2,  // 42: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
+	27, // 43: cybertele.Cybermetrica.AllDataTypes:output_type -> cybertele.DataTypes
+	18, // 44: cybertele.Cybermetrica.MachineStatistic:output_type -> cybertele.StatisticData
+	31, // [31:45] is the sub-list for method output_type
+	17, // [17:31] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_cybermetrica_proto_init() }
@@ -1421,7 +1609,7 @@ func file_cybermetrica_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cybermetrica_proto_rawDesc), len(file_cybermetrica_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

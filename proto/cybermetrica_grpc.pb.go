@@ -32,6 +32,7 @@ const (
 	Cybermetrica_MachineGraph_FullMethodName         = "/cybertele.Cybermetrica/MachineGraph"
 	Cybermetrica_MachineGps_FullMethodName           = "/cybertele.Cybermetrica/MachineGps"
 	Cybermetrica_AllDataTypes_FullMethodName         = "/cybertele.Cybermetrica/AllDataTypes"
+	Cybermetrica_MachineStatistic_FullMethodName     = "/cybertele.Cybermetrica/MachineStatistic"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -51,6 +52,7 @@ type CybermetricaClient interface {
 	MachineGraph(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GraphData, error)
 	MachineGps(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GpsData, error)
 	AllDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DataTypes, error)
+	MachineStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticData, error)
 }
 
 type cybermetricaClient struct {
@@ -191,6 +193,16 @@ func (c *cybermetricaClient) AllDataTypes(ctx context.Context, in *Empty, opts .
 	return out, nil
 }
 
+func (c *cybermetricaClient) MachineStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticData, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatisticData)
+	err := c.cc.Invoke(ctx, Cybermetrica_MachineStatistic_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -208,6 +220,7 @@ type CybermetricaServer interface {
 	MachineGraph(context.Context, *MachineStatisticRequest) (*GraphData, error)
 	MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error)
 	AllDataTypes(context.Context, *Empty) (*DataTypes, error)
+	MachineStatistic(context.Context, *MachineStatisticRequest) (*StatisticData, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -256,6 +269,9 @@ func (UnimplementedCybermetricaServer) MachineGps(context.Context, *MachineStati
 }
 func (UnimplementedCybermetricaServer) AllDataTypes(context.Context, *Empty) (*DataTypes, error) {
 	return nil, status.Error(codes.Unimplemented, "method AllDataTypes not implemented")
+}
+func (UnimplementedCybermetricaServer) MachineStatistic(context.Context, *MachineStatisticRequest) (*StatisticData, error) {
+	return nil, status.Error(codes.Unimplemented, "method MachineStatistic not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -512,6 +528,24 @@ func _Cybermetrica_AllDataTypes_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_MachineStatistic_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MachineStatisticRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).MachineStatistic(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_MachineStatistic_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).MachineStatistic(ctx, req.(*MachineStatisticRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +604,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AllDataTypes",
 			Handler:    _Cybermetrica_AllDataTypes_Handler,
+		},
+		{
+			MethodName: "MachineStatistic",
+			Handler:    _Cybermetrica_MachineStatistic_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
