@@ -149,9 +149,16 @@ message StatisticData {
     string from = 3;
     string to = 4;
     StatisticEngine engine = 5;
-    float workhours = 6;
+    StatisticWorkhours workhours = 6;
     int64 job = 7;
     int64 lost = 8;
+    StatisticFuel fuel = 9;
+}
+
+message StatisticWorkhours {
+    float workhours = 1;
+    float start = 2;
+    float end = 3;
 }
 
 message StatisticEngine {
@@ -159,4 +166,12 @@ message StatisticEngine {
     int64 idle = 2;
     int64 work = 3;
     int64 highRPM = 4;
+}
+
+message StatisticFuel {
+    int32 consumption = 1;
+    int32 drainVolume = 2;
+    int32 drainCount = 3;
+    int32 refillVolume = 4;
+    int32 refillCount = 5;
 }
