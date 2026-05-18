@@ -450,6 +450,7 @@ type MachineStatisticRequest struct {
 	To            string                 `protobuf:"bytes,5,opt,name=to,proto3" json:"to,omitempty"`
 	Graph         string                 `protobuf:"bytes,6,opt,name=graph,proto3" json:"graph,omitempty"`
 	Code          float32                `protobuf:"fixed32,7,opt,name=code,proto3" json:"code,omitempty"`
+	Period        string                 `protobuf:"bytes,8,opt,name=period,proto3" json:"period,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -531,6 +532,13 @@ func (x *MachineStatisticRequest) GetCode() float32 {
 		return x.Code
 	}
 	return 0
+}
+
+func (x *MachineStatisticRequest) GetPeriod() string {
+	if x != nil {
+		return x.Period
+	}
+	return ""
 }
 
 type DaysData struct {
@@ -1517,6 +1525,190 @@ func (x *StatisticFuel) GetRefillCount() int32 {
 	return 0
 }
 
+type StatisticPeriod struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Timezone      int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	From          string                 `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To            string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Period        string                 `protobuf:"bytes,5,opt,name=period,proto3" json:"period,omitempty"`
+	Step          string                 `protobuf:"bytes,6,opt,name=step,proto3" json:"step,omitempty"`
+	Data          []*StatisticPeriodItem `protobuf:"bytes,7,rep,name=data,proto3" json:"data,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StatisticPeriod) Reset() {
+	*x = StatisticPeriod{}
+	mi := &file_cybermetrica_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StatisticPeriod) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatisticPeriod) ProtoMessage() {}
+
+func (x *StatisticPeriod) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatisticPeriod.ProtoReflect.Descriptor instead.
+func (*StatisticPeriod) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *StatisticPeriod) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
+func (x *StatisticPeriod) GetTimezone() int32 {
+	if x != nil {
+		return x.Timezone
+	}
+	return 0
+}
+
+func (x *StatisticPeriod) GetFrom() string {
+	if x != nil {
+		return x.From
+	}
+	return ""
+}
+
+func (x *StatisticPeriod) GetTo() string {
+	if x != nil {
+		return x.To
+	}
+	return ""
+}
+
+func (x *StatisticPeriod) GetPeriod() string {
+	if x != nil {
+		return x.Period
+	}
+	return ""
+}
+
+func (x *StatisticPeriod) GetStep() string {
+	if x != nil {
+		return x.Step
+	}
+	return ""
+}
+
+func (x *StatisticPeriod) GetData() []*StatisticPeriodItem {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type StatisticPeriodItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Label         string                 `protobuf:"bytes,1,opt,name=label,proto3" json:"label,omitempty"`
+	Workhours     *StatisticWorkhours    `protobuf:"bytes,2,opt,name=workhours,proto3" json:"workhours,omitempty"`
+	Engine        *StatisticEngine       `protobuf:"bytes,3,opt,name=engine,proto3" json:"engine,omitempty"`
+	Fuel          *StatisticFuel         `protobuf:"bytes,4,opt,name=fuel,proto3" json:"fuel,omitempty"`
+	Job           int64                  `protobuf:"varint,5,opt,name=job,proto3" json:"job,omitempty"`
+	Connection    int64                  `protobuf:"varint,6,opt,name=connection,proto3" json:"connection,omitempty"`
+	ErrorsCount   int32                  `protobuf:"varint,7,opt,name=errorsCount,proto3" json:"errorsCount,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StatisticPeriodItem) Reset() {
+	*x = StatisticPeriodItem{}
+	mi := &file_cybermetrica_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StatisticPeriodItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StatisticPeriodItem) ProtoMessage() {}
+
+func (x *StatisticPeriodItem) ProtoReflect() protoreflect.Message {
+	mi := &file_cybermetrica_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StatisticPeriodItem.ProtoReflect.Descriptor instead.
+func (*StatisticPeriodItem) Descriptor() ([]byte, []int) {
+	return file_cybermetrica_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *StatisticPeriodItem) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *StatisticPeriodItem) GetWorkhours() *StatisticWorkhours {
+	if x != nil {
+		return x.Workhours
+	}
+	return nil
+}
+
+func (x *StatisticPeriodItem) GetEngine() *StatisticEngine {
+	if x != nil {
+		return x.Engine
+	}
+	return nil
+}
+
+func (x *StatisticPeriodItem) GetFuel() *StatisticFuel {
+	if x != nil {
+		return x.Fuel
+	}
+	return nil
+}
+
+func (x *StatisticPeriodItem) GetJob() int64 {
+	if x != nil {
+		return x.Job
+	}
+	return 0
+}
+
+func (x *StatisticPeriodItem) GetConnection() int64 {
+	if x != nil {
+		return x.Connection
+	}
+	return 0
+}
+
+func (x *StatisticPeriodItem) GetErrorsCount() int32 {
+	if x != nil {
+		return x.ErrorsCount
+	}
+	return 0
+}
+
 var File_cybermetrica_proto protoreflect.FileDescriptor
 
 const file_cybermetrica_proto_rawDesc = "" +
@@ -1551,7 +1743,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\bdataType\x18\x01 \x01(\v2\x13.cybertele.DataTypeR\bdataType\x12\"\n" +
 	"\flastDataTime\x18\x02 \x01(\tR\flastDataTime\"G\n" +
 	"\x15MachineDataTypesReply\x12.\n" +
-	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.MachineDataTypeR\x04data\"\xa7\x01\n" +
+	"\x04data\x18\x01 \x03(\v2\x1a.cybertele.MachineDataTypeR\x04data\"\xbf\x01\n" +
 	"\x17MachineStatisticRequest\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
 	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
@@ -1559,7 +1751,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x04from\x18\x04 \x01(\tR\x04from\x12\x0e\n" +
 	"\x02to\x18\x05 \x01(\tR\x02to\x12\x14\n" +
 	"\x05graph\x18\x06 \x01(\tR\x05graph\x12\x12\n" +
-	"\x04code\x18\a \x01(\x02R\x04code\"2\n" +
+	"\x04code\x18\a \x01(\x02R\x04code\x12\x16\n" +
+	"\x06period\x18\b \x01(\tR\x06period\"2\n" +
 	"\bDaysData\x12&\n" +
 	"\x04data\x18\x01 \x03(\v2\x12.cybertele.DayDataR\x04data\"\xb7\x02\n" +
 	"\aDayData\x12\x0e\n" +
@@ -1638,7 +1831,25 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"drainCount\x18\x03 \x01(\x05R\n" +
 	"drainCount\x12\"\n" +
 	"\frefillVolume\x18\x04 \x01(\x05R\frefillVolume\x12 \n" +
-	"\vrefillCount\x18\x05 \x01(\x05R\vrefillCount2\xf6\a\n" +
+	"\vrefillCount\x18\x05 \x01(\x05R\vrefillCount\"\xc1\x01\n" +
+	"\x0fStatisticPeriod\x12\x0e\n" +
+	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
+	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
+	"\x04from\x18\x03 \x01(\tR\x04from\x12\x0e\n" +
+	"\x02to\x18\x04 \x01(\tR\x02to\x12\x16\n" +
+	"\x06period\x18\x05 \x01(\tR\x06period\x12\x12\n" +
+	"\x04step\x18\x06 \x01(\tR\x04step\x122\n" +
+	"\x04data\x18\a \x03(\v2\x1e.cybertele.StatisticPeriodItemR\x04data\"\x9e\x02\n" +
+	"\x13StatisticPeriodItem\x12\x14\n" +
+	"\x05label\x18\x01 \x01(\tR\x05label\x12;\n" +
+	"\tworkhours\x18\x02 \x01(\v2\x1d.cybertele.StatisticWorkhoursR\tworkhours\x122\n" +
+	"\x06engine\x18\x03 \x01(\v2\x1a.cybertele.StatisticEngineR\x06engine\x12,\n" +
+	"\x04fuel\x18\x04 \x01(\v2\x18.cybertele.StatisticFuelR\x04fuel\x12\x10\n" +
+	"\x03job\x18\x05 \x01(\x03R\x03job\x12\x1e\n" +
+	"\n" +
+	"connection\x18\x06 \x01(\x03R\n" +
+	"connection\x12 \n" +
+	"\verrorsCount\x18\a \x01(\x05R\verrorsCount2\xd2\b\n" +
 	"\fCybermetrica\x124\n" +
 	"\x06Health\x12\x10.cybertele.Empty\x1a\x16.cybertele.HealthReply\"\x00\x12:\n" +
 	"\vParserState\x12\x10.cybertele.Empty\x1a\x17.cybertele.ParserStatus\"\x00\x12:\n" +
@@ -1656,7 +1867,8 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\n" +
 	"MachineGps\x12\".cybertele.MachineStatisticRequest\x1a\x12.cybertele.GpsData\"\x00\x128\n" +
 	"\fAllDataTypes\x12\x10.cybertele.Empty\x1a\x14.cybertele.DataTypes\"\x00\x12R\n" +
-	"\x10MachineStatistic\x12\".cybertele.MachineStatisticRequest\x1a\x18.cybertele.StatisticData\"\x00B\tZ\a./protob\x06proto3"
+	"\x10MachineStatistic\x12\".cybertele.MachineStatisticRequest\x1a\x18.cybertele.StatisticData\"\x00\x12Z\n" +
+	"\x16MachineStatisticPeriod\x12\".cybertele.MachineStatisticRequest\x1a\x1a.cybertele.StatisticPeriod\"\x00B\tZ\a./protob\x06proto3"
 
 var (
 	file_cybermetrica_proto_rawDescOnce sync.Once
@@ -1670,7 +1882,7 @@ func file_cybermetrica_proto_rawDescGZIP() []byte {
 	return file_cybermetrica_proto_rawDescData
 }
 
-var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_cybermetrica_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_cybermetrica_proto_goTypes = []any{
 	(*RawGPS)(nil),                  // 0: cybertele.RawGPS
 	(*GpsDataBlock)(nil),            // 1: cybertele.GpsDataBlock
@@ -1694,21 +1906,23 @@ var file_cybermetrica_proto_goTypes = []any{
 	(*StatisticWorkhours)(nil),      // 19: cybertele.StatisticWorkhours
 	(*StatisticEngine)(nil),         // 20: cybertele.StatisticEngine
 	(*StatisticFuel)(nil),           // 21: cybertele.StatisticFuel
-	(*Pagination)(nil),              // 22: cybertele.Pagination
-	(*DataType)(nil),                // 23: cybertele.DataType
-	(*Empty)(nil),                   // 24: cybertele.Empty
-	(*PageRequest)(nil),             // 25: cybertele.PageRequest
-	(*Machine)(nil),                 // 26: cybertele.Machine
-	(*HealthReply)(nil),             // 27: cybertele.HealthReply
-	(*ParserStatus)(nil),            // 28: cybertele.ParserStatus
-	(*DataTypes)(nil),               // 29: cybertele.DataTypes
+	(*StatisticPeriod)(nil),         // 22: cybertele.StatisticPeriod
+	(*StatisticPeriodItem)(nil),     // 23: cybertele.StatisticPeriodItem
+	(*Pagination)(nil),              // 24: cybertele.Pagination
+	(*DataType)(nil),                // 25: cybertele.DataType
+	(*Empty)(nil),                   // 26: cybertele.Empty
+	(*PageRequest)(nil),             // 27: cybertele.PageRequest
+	(*Machine)(nil),                 // 28: cybertele.Machine
+	(*HealthReply)(nil),             // 29: cybertele.HealthReply
+	(*ParserStatus)(nil),            // 30: cybertele.ParserStatus
+	(*DataTypes)(nil),               // 31: cybertele.DataTypes
 }
 var file_cybermetrica_proto_depIdxs = []int32{
 	0,  // 0: cybertele.GpsDataBlock.gps:type_name -> cybertele.RawGPS
 	1,  // 1: cybertele.GpsData.data:type_name -> cybertele.GpsDataBlock
 	3,  // 2: cybertele.ParserMetricaLogsReply.data:type_name -> cybertele.ParserMetricaLog
-	22, // 3: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
-	23, // 4: cybertele.MachineDataType.dataType:type_name -> cybertele.DataType
+	24, // 3: cybertele.ParserMetricaLogsReply.pagination:type_name -> cybertele.Pagination
+	25, // 4: cybertele.MachineDataType.dataType:type_name -> cybertele.DataType
 	5,  // 5: cybertele.MachineDataTypesReply.data:type_name -> cybertele.MachineDataType
 	9,  // 6: cybertele.DaysData.data:type_name -> cybertele.DayData
 	10, // 7: cybertele.DayData.connection:type_name -> cybertele.DayDataValues
@@ -1723,39 +1937,45 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	20, // 16: cybertele.StatisticData.engine:type_name -> cybertele.StatisticEngine
 	19, // 17: cybertele.StatisticData.workhours:type_name -> cybertele.StatisticWorkhours
 	21, // 18: cybertele.StatisticData.fuel:type_name -> cybertele.StatisticFuel
-	24, // 19: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
-	24, // 20: cybertele.Cybermetrica.ParserState:input_type -> cybertele.Empty
-	24, // 21: cybertele.Cybermetrica.ParserStart:input_type -> cybertele.Empty
-	24, // 22: cybertele.Cybermetrica.ParserStop:input_type -> cybertele.Empty
-	25, // 23: cybertele.Cybermetrica.ParserLogs:input_type -> cybertele.PageRequest
-	25, // 24: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
-	26, // 25: cybertele.Cybermetrica.MachineDataTypes:input_type -> cybertele.Machine
-	7,  // 26: cybertele.Cybermetrica.MachineDayStatistic:input_type -> cybertele.MachineStatisticRequest
-	7,  // 27: cybertele.Cybermetrica.MachineDaysStatistic:input_type -> cybertele.MachineStatisticRequest
-	7,  // 28: cybertele.Cybermetrica.MachineErrors:input_type -> cybertele.MachineStatisticRequest
-	7,  // 29: cybertele.Cybermetrica.MachineGraph:input_type -> cybertele.MachineStatisticRequest
-	7,  // 30: cybertele.Cybermetrica.MachineGps:input_type -> cybertele.MachineStatisticRequest
-	24, // 31: cybertele.Cybermetrica.AllDataTypes:input_type -> cybertele.Empty
-	7,  // 32: cybertele.Cybermetrica.MachineStatistic:input_type -> cybertele.MachineStatisticRequest
-	27, // 33: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
-	28, // 34: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
-	28, // 35: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
-	28, // 36: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
-	4,  // 37: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
-	4,  // 38: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
-	6,  // 39: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
-	9,  // 40: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
-	8,  // 41: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
-	12, // 42: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
-	15, // 43: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
-	2,  // 44: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
-	29, // 45: cybertele.Cybermetrica.AllDataTypes:output_type -> cybertele.DataTypes
-	18, // 46: cybertele.Cybermetrica.MachineStatistic:output_type -> cybertele.StatisticData
-	33, // [33:47] is the sub-list for method output_type
-	19, // [19:33] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	23, // 19: cybertele.StatisticPeriod.data:type_name -> cybertele.StatisticPeriodItem
+	19, // 20: cybertele.StatisticPeriodItem.workhours:type_name -> cybertele.StatisticWorkhours
+	20, // 21: cybertele.StatisticPeriodItem.engine:type_name -> cybertele.StatisticEngine
+	21, // 22: cybertele.StatisticPeriodItem.fuel:type_name -> cybertele.StatisticFuel
+	26, // 23: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
+	26, // 24: cybertele.Cybermetrica.ParserState:input_type -> cybertele.Empty
+	26, // 25: cybertele.Cybermetrica.ParserStart:input_type -> cybertele.Empty
+	26, // 26: cybertele.Cybermetrica.ParserStop:input_type -> cybertele.Empty
+	27, // 27: cybertele.Cybermetrica.ParserLogs:input_type -> cybertele.PageRequest
+	27, // 28: cybertele.Cybermetrica.MachineLogs:input_type -> cybertele.PageRequest
+	28, // 29: cybertele.Cybermetrica.MachineDataTypes:input_type -> cybertele.Machine
+	7,  // 30: cybertele.Cybermetrica.MachineDayStatistic:input_type -> cybertele.MachineStatisticRequest
+	7,  // 31: cybertele.Cybermetrica.MachineDaysStatistic:input_type -> cybertele.MachineStatisticRequest
+	7,  // 32: cybertele.Cybermetrica.MachineErrors:input_type -> cybertele.MachineStatisticRequest
+	7,  // 33: cybertele.Cybermetrica.MachineGraph:input_type -> cybertele.MachineStatisticRequest
+	7,  // 34: cybertele.Cybermetrica.MachineGps:input_type -> cybertele.MachineStatisticRequest
+	26, // 35: cybertele.Cybermetrica.AllDataTypes:input_type -> cybertele.Empty
+	7,  // 36: cybertele.Cybermetrica.MachineStatistic:input_type -> cybertele.MachineStatisticRequest
+	7,  // 37: cybertele.Cybermetrica.MachineStatisticPeriod:input_type -> cybertele.MachineStatisticRequest
+	29, // 38: cybertele.Cybermetrica.Health:output_type -> cybertele.HealthReply
+	30, // 39: cybertele.Cybermetrica.ParserState:output_type -> cybertele.ParserStatus
+	30, // 40: cybertele.Cybermetrica.ParserStart:output_type -> cybertele.ParserStatus
+	30, // 41: cybertele.Cybermetrica.ParserStop:output_type -> cybertele.ParserStatus
+	4,  // 42: cybertele.Cybermetrica.ParserLogs:output_type -> cybertele.ParserMetricaLogsReply
+	4,  // 43: cybertele.Cybermetrica.MachineLogs:output_type -> cybertele.ParserMetricaLogsReply
+	6,  // 44: cybertele.Cybermetrica.MachineDataTypes:output_type -> cybertele.MachineDataTypesReply
+	9,  // 45: cybertele.Cybermetrica.MachineDayStatistic:output_type -> cybertele.DayData
+	8,  // 46: cybertele.Cybermetrica.MachineDaysStatistic:output_type -> cybertele.DaysData
+	12, // 47: cybertele.Cybermetrica.MachineErrors:output_type -> cybertele.MachineErrorsReply
+	15, // 48: cybertele.Cybermetrica.MachineGraph:output_type -> cybertele.GraphData
+	2,  // 49: cybertele.Cybermetrica.MachineGps:output_type -> cybertele.GpsData
+	31, // 50: cybertele.Cybermetrica.AllDataTypes:output_type -> cybertele.DataTypes
+	18, // 51: cybertele.Cybermetrica.MachineStatistic:output_type -> cybertele.StatisticData
+	22, // 52: cybertele.Cybermetrica.MachineStatisticPeriod:output_type -> cybertele.StatisticPeriod
+	38, // [38:53] is the sub-list for method output_type
+	23, // [23:38] is the sub-list for method input_type
+	23, // [23:23] is the sub-list for extension type_name
+	23, // [23:23] is the sub-list for extension extendee
+	0,  // [0:23] is the sub-list for field type_name
 }
 
 func init() { file_cybermetrica_proto_init() }
@@ -1770,7 +1990,7 @@ func file_cybermetrica_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_cybermetrica_proto_rawDesc), len(file_cybermetrica_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

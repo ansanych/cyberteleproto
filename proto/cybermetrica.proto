@@ -20,6 +20,7 @@ service Cybermetrica {
     rpc MachineGps (MachineStatisticRequest) returns (GpsData) {}
     rpc AllDataTypes (Empty) returns (DataTypes) {}
     rpc MachineStatistic (MachineStatisticRequest) returns (StatisticData) {}
+    rpc MachineStatisticPeriod (MachineStatisticRequest) returns (StatisticPeriod) {}
 }
 
 message RawGPS {
@@ -72,6 +73,7 @@ message MachineStatisticRequest {
     string to = 5;
     string graph = 6;
     float code = 7;
+    string period = 8;
 }
 
 message DaysData {
@@ -174,4 +176,24 @@ message StatisticFuel {
     int32 drainCount = 3;
     int32 refillVolume = 4;
     int32 refillCount = 5;
+}
+
+message StatisticPeriod {
+    string sn = 1;
+    int32 timezone = 2;
+    string from = 3;
+    string to = 4;
+    string period = 5;
+    string step = 6;
+    repeated StatisticPeriodItem data = 7;
+}
+
+message StatisticPeriodItem {
+    string label = 1;
+    StatisticWorkhours workhours = 2;
+    StatisticEngine engine = 3;
+    StatisticFuel fuel = 4;
+    int64 job = 5;
+    int64 connection = 6;
+    int32 errorsCount = 7;
 }

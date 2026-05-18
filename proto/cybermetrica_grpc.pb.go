@@ -19,20 +19,21 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Cybermetrica_Health_FullMethodName               = "/cybertele.Cybermetrica/Health"
-	Cybermetrica_ParserState_FullMethodName          = "/cybertele.Cybermetrica/ParserState"
-	Cybermetrica_ParserStart_FullMethodName          = "/cybertele.Cybermetrica/ParserStart"
-	Cybermetrica_ParserStop_FullMethodName           = "/cybertele.Cybermetrica/ParserStop"
-	Cybermetrica_ParserLogs_FullMethodName           = "/cybertele.Cybermetrica/ParserLogs"
-	Cybermetrica_MachineLogs_FullMethodName          = "/cybertele.Cybermetrica/MachineLogs"
-	Cybermetrica_MachineDataTypes_FullMethodName     = "/cybertele.Cybermetrica/MachineDataTypes"
-	Cybermetrica_MachineDayStatistic_FullMethodName  = "/cybertele.Cybermetrica/MachineDayStatistic"
-	Cybermetrica_MachineDaysStatistic_FullMethodName = "/cybertele.Cybermetrica/MachineDaysStatistic"
-	Cybermetrica_MachineErrors_FullMethodName        = "/cybertele.Cybermetrica/MachineErrors"
-	Cybermetrica_MachineGraph_FullMethodName         = "/cybertele.Cybermetrica/MachineGraph"
-	Cybermetrica_MachineGps_FullMethodName           = "/cybertele.Cybermetrica/MachineGps"
-	Cybermetrica_AllDataTypes_FullMethodName         = "/cybertele.Cybermetrica/AllDataTypes"
-	Cybermetrica_MachineStatistic_FullMethodName     = "/cybertele.Cybermetrica/MachineStatistic"
+	Cybermetrica_Health_FullMethodName                 = "/cybertele.Cybermetrica/Health"
+	Cybermetrica_ParserState_FullMethodName            = "/cybertele.Cybermetrica/ParserState"
+	Cybermetrica_ParserStart_FullMethodName            = "/cybertele.Cybermetrica/ParserStart"
+	Cybermetrica_ParserStop_FullMethodName             = "/cybertele.Cybermetrica/ParserStop"
+	Cybermetrica_ParserLogs_FullMethodName             = "/cybertele.Cybermetrica/ParserLogs"
+	Cybermetrica_MachineLogs_FullMethodName            = "/cybertele.Cybermetrica/MachineLogs"
+	Cybermetrica_MachineDataTypes_FullMethodName       = "/cybertele.Cybermetrica/MachineDataTypes"
+	Cybermetrica_MachineDayStatistic_FullMethodName    = "/cybertele.Cybermetrica/MachineDayStatistic"
+	Cybermetrica_MachineDaysStatistic_FullMethodName   = "/cybertele.Cybermetrica/MachineDaysStatistic"
+	Cybermetrica_MachineErrors_FullMethodName          = "/cybertele.Cybermetrica/MachineErrors"
+	Cybermetrica_MachineGraph_FullMethodName           = "/cybertele.Cybermetrica/MachineGraph"
+	Cybermetrica_MachineGps_FullMethodName             = "/cybertele.Cybermetrica/MachineGps"
+	Cybermetrica_AllDataTypes_FullMethodName           = "/cybertele.Cybermetrica/AllDataTypes"
+	Cybermetrica_MachineStatistic_FullMethodName       = "/cybertele.Cybermetrica/MachineStatistic"
+	Cybermetrica_MachineStatisticPeriod_FullMethodName = "/cybertele.Cybermetrica/MachineStatisticPeriod"
 )
 
 // CybermetricaClient is the client API for Cybermetrica service.
@@ -53,6 +54,7 @@ type CybermetricaClient interface {
 	MachineGps(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*GpsData, error)
 	AllDataTypes(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*DataTypes, error)
 	MachineStatistic(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticData, error)
+	MachineStatisticPeriod(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticPeriod, error)
 }
 
 type cybermetricaClient struct {
@@ -203,6 +205,16 @@ func (c *cybermetricaClient) MachineStatistic(ctx context.Context, in *MachineSt
 	return out, nil
 }
 
+func (c *cybermetricaClient) MachineStatisticPeriod(ctx context.Context, in *MachineStatisticRequest, opts ...grpc.CallOption) (*StatisticPeriod, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatisticPeriod)
+	err := c.cc.Invoke(ctx, Cybermetrica_MachineStatisticPeriod_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CybermetricaServer is the server API for Cybermetrica service.
 // All implementations must embed UnimplementedCybermetricaServer
 // for forward compatibility.
@@ -221,6 +233,7 @@ type CybermetricaServer interface {
 	MachineGps(context.Context, *MachineStatisticRequest) (*GpsData, error)
 	AllDataTypes(context.Context, *Empty) (*DataTypes, error)
 	MachineStatistic(context.Context, *MachineStatisticRequest) (*StatisticData, error)
+	MachineStatisticPeriod(context.Context, *MachineStatisticRequest) (*StatisticPeriod, error)
 	mustEmbedUnimplementedCybermetricaServer()
 }
 
@@ -272,6 +285,9 @@ func (UnimplementedCybermetricaServer) AllDataTypes(context.Context, *Empty) (*D
 }
 func (UnimplementedCybermetricaServer) MachineStatistic(context.Context, *MachineStatisticRequest) (*StatisticData, error) {
 	return nil, status.Error(codes.Unimplemented, "method MachineStatistic not implemented")
+}
+func (UnimplementedCybermetricaServer) MachineStatisticPeriod(context.Context, *MachineStatisticRequest) (*StatisticPeriod, error) {
+	return nil, status.Error(codes.Unimplemented, "method MachineStatisticPeriod not implemented")
 }
 func (UnimplementedCybermetricaServer) mustEmbedUnimplementedCybermetricaServer() {}
 func (UnimplementedCybermetricaServer) testEmbeddedByValue()                      {}
@@ -546,6 +562,24 @@ func _Cybermetrica_MachineStatistic_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Cybermetrica_MachineStatisticPeriod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MachineStatisticRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CybermetricaServer).MachineStatisticPeriod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Cybermetrica_MachineStatisticPeriod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CybermetricaServer).MachineStatisticPeriod(ctx, req.(*MachineStatisticRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Cybermetrica_ServiceDesc is the grpc.ServiceDesc for Cybermetrica service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -608,6 +642,10 @@ var Cybermetrica_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "MachineStatistic",
 			Handler:    _Cybermetrica_MachineStatistic_Handler,
+		},
+		{
+			MethodName: "MachineStatisticPeriod",
+			Handler:    _Cybermetrica_MachineStatisticPeriod_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
