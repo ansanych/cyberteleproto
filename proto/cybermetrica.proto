@@ -189,6 +189,8 @@ message StatisticPeriod {
     float workhoursStart = 8;
     float workhoursEnd = 9;
     StatisticFuel fuel = 10;
+    int32 errorsCount = 11;
+    int64 connection = 12;
 }
 
 message StatisticPeriodItem {
