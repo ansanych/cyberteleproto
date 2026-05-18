@@ -186,11 +186,14 @@ message StatisticPeriod {
     string period = 5;
     string step = 6;
     repeated StatisticPeriodItem data = 7;
+    float workhoursStart = 8;
+    float workhoursEnd = 9;
+    StatisticFuel fuel = 10;
 }
 
 message StatisticPeriodItem {
     string label = 1;
-    StatisticWorkhours workhours = 2;
+    float workhours = 2;
     StatisticEngine engine = 3;
     StatisticFuel fuel = 4;
     int64 job = 5;

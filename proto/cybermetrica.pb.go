@@ -1526,16 +1526,19 @@ func (x *StatisticFuel) GetRefillCount() int32 {
 }
 
 type StatisticPeriod struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Sn            string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
-	Timezone      int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	From          string                 `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
-	To            string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
-	Period        string                 `protobuf:"bytes,5,opt,name=period,proto3" json:"period,omitempty"`
-	Step          string                 `protobuf:"bytes,6,opt,name=step,proto3" json:"step,omitempty"`
-	Data          []*StatisticPeriodItem `protobuf:"bytes,7,rep,name=data,proto3" json:"data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Sn             string                 `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	Timezone       int32                  `protobuf:"varint,2,opt,name=timezone,proto3" json:"timezone,omitempty"`
+	From           string                 `protobuf:"bytes,3,opt,name=from,proto3" json:"from,omitempty"`
+	To             string                 `protobuf:"bytes,4,opt,name=to,proto3" json:"to,omitempty"`
+	Period         string                 `protobuf:"bytes,5,opt,name=period,proto3" json:"period,omitempty"`
+	Step           string                 `protobuf:"bytes,6,opt,name=step,proto3" json:"step,omitempty"`
+	Data           []*StatisticPeriodItem `protobuf:"bytes,7,rep,name=data,proto3" json:"data,omitempty"`
+	WorkhoursStart float32                `protobuf:"fixed32,8,opt,name=workhoursStart,proto3" json:"workhoursStart,omitempty"`
+	WorkhoursEnd   float32                `protobuf:"fixed32,9,opt,name=workhoursEnd,proto3" json:"workhoursEnd,omitempty"`
+	Fuel           *StatisticFuel         `protobuf:"bytes,10,opt,name=fuel,proto3" json:"fuel,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *StatisticPeriod) Reset() {
@@ -1617,10 +1620,31 @@ func (x *StatisticPeriod) GetData() []*StatisticPeriodItem {
 	return nil
 }
 
+func (x *StatisticPeriod) GetWorkhoursStart() float32 {
+	if x != nil {
+		return x.WorkhoursStart
+	}
+	return 0
+}
+
+func (x *StatisticPeriod) GetWorkhoursEnd() float32 {
+	if x != nil {
+		return x.WorkhoursEnd
+	}
+	return 0
+}
+
+func (x *StatisticPeriod) GetFuel() *StatisticFuel {
+	if x != nil {
+		return x.Fuel
+	}
+	return nil
+}
+
 type StatisticPeriodItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Label         string                 `protobuf:"bytes,1,opt,name=label,proto3" json:"label,omitempty"`
-	Workhours     *StatisticWorkhours    `protobuf:"bytes,2,opt,name=workhours,proto3" json:"workhours,omitempty"`
+	Workhours     float32                `protobuf:"fixed32,2,opt,name=workhours,proto3" json:"workhours,omitempty"`
 	Engine        *StatisticEngine       `protobuf:"bytes,3,opt,name=engine,proto3" json:"engine,omitempty"`
 	Fuel          *StatisticFuel         `protobuf:"bytes,4,opt,name=fuel,proto3" json:"fuel,omitempty"`
 	Job           int64                  `protobuf:"varint,5,opt,name=job,proto3" json:"job,omitempty"`
@@ -1667,11 +1691,11 @@ func (x *StatisticPeriodItem) GetLabel() string {
 	return ""
 }
 
-func (x *StatisticPeriodItem) GetWorkhours() *StatisticWorkhours {
+func (x *StatisticPeriodItem) GetWorkhours() float32 {
 	if x != nil {
 		return x.Workhours
 	}
-	return nil
+	return 0
 }
 
 func (x *StatisticPeriodItem) GetEngine() *StatisticEngine {
@@ -1831,7 +1855,7 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"drainCount\x18\x03 \x01(\x05R\n" +
 	"drainCount\x12\"\n" +
 	"\frefillVolume\x18\x04 \x01(\x05R\frefillVolume\x12 \n" +
-	"\vrefillCount\x18\x05 \x01(\x05R\vrefillCount\"\xc1\x01\n" +
+	"\vrefillCount\x18\x05 \x01(\x05R\vrefillCount\"\xbb\x02\n" +
 	"\x0fStatisticPeriod\x12\x0e\n" +
 	"\x02sn\x18\x01 \x01(\tR\x02sn\x12\x1a\n" +
 	"\btimezone\x18\x02 \x01(\x05R\btimezone\x12\x12\n" +
@@ -1839,10 +1863,14 @@ const file_cybermetrica_proto_rawDesc = "" +
 	"\x02to\x18\x04 \x01(\tR\x02to\x12\x16\n" +
 	"\x06period\x18\x05 \x01(\tR\x06period\x12\x12\n" +
 	"\x04step\x18\x06 \x01(\tR\x04step\x122\n" +
-	"\x04data\x18\a \x03(\v2\x1e.cybertele.StatisticPeriodItemR\x04data\"\x9e\x02\n" +
+	"\x04data\x18\a \x03(\v2\x1e.cybertele.StatisticPeriodItemR\x04data\x12&\n" +
+	"\x0eworkhoursStart\x18\b \x01(\x02R\x0eworkhoursStart\x12\"\n" +
+	"\fworkhoursEnd\x18\t \x01(\x02R\fworkhoursEnd\x12,\n" +
+	"\x04fuel\x18\n" +
+	" \x01(\v2\x18.cybertele.StatisticFuelR\x04fuel\"\xff\x01\n" +
 	"\x13StatisticPeriodItem\x12\x14\n" +
-	"\x05label\x18\x01 \x01(\tR\x05label\x12;\n" +
-	"\tworkhours\x18\x02 \x01(\v2\x1d.cybertele.StatisticWorkhoursR\tworkhours\x122\n" +
+	"\x05label\x18\x01 \x01(\tR\x05label\x12\x1c\n" +
+	"\tworkhours\x18\x02 \x01(\x02R\tworkhours\x122\n" +
 	"\x06engine\x18\x03 \x01(\v2\x1a.cybertele.StatisticEngineR\x06engine\x12,\n" +
 	"\x04fuel\x18\x04 \x01(\v2\x18.cybertele.StatisticFuelR\x04fuel\x12\x10\n" +
 	"\x03job\x18\x05 \x01(\x03R\x03job\x12\x1e\n" +
@@ -1938,7 +1966,7 @@ var file_cybermetrica_proto_depIdxs = []int32{
 	19, // 17: cybertele.StatisticData.workhours:type_name -> cybertele.StatisticWorkhours
 	21, // 18: cybertele.StatisticData.fuel:type_name -> cybertele.StatisticFuel
 	23, // 19: cybertele.StatisticPeriod.data:type_name -> cybertele.StatisticPeriodItem
-	19, // 20: cybertele.StatisticPeriodItem.workhours:type_name -> cybertele.StatisticWorkhours
+	21, // 20: cybertele.StatisticPeriod.fuel:type_name -> cybertele.StatisticFuel
 	20, // 21: cybertele.StatisticPeriodItem.engine:type_name -> cybertele.StatisticEngine
 	21, // 22: cybertele.StatisticPeriodItem.fuel:type_name -> cybertele.StatisticFuel
 	26, // 23: cybertele.Cybermetrica.Health:input_type -> cybertele.Empty
